@@ -10,7 +10,7 @@
     * 1- comenzar con el git init
     * 2- luego git add . ( para que se agreguen todos los archivos)
     * 3- sgte git commit --m "mensaje o explicacion del commit" 
-    * 4- git remote add origin https://github.com/Farsante/ConsolaInteractivaNodejs. // comando + la url del repo
+    * 4- git remote add origin https://github.com/Farsante/AppWeather-Geolocation. // comando + la url del repo
     * 5- git branch -M main
     * 6- git push -u origin main
 
