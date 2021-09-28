@@ -1,6 +1,5 @@
-require('dotenv').config()
-
-
+const fs = require('fs');
+require('dotenv').config();
 require('colors');
 const   {  
             inquirerMenu,
@@ -25,11 +24,19 @@ const main = async () => {
             case 1:
                 //Mostrar mensaje
                 const termino = await leerInput('Ciudada: ');
+
                 //Buscar los lugares
                 const lugares = await busquedas.ciudad( termino );
+
                 //Seleccionar el lugar
                 const idSelec = await listarLugares( lugares );
+                if (idSelec === '0') continue;
+            
                 const lugarSel = lugares.find ( l => l.id === idSelec );
+
+                //Guardar en DB
+                busquedas.agregarHistorial( lugarSel.nombre );
+
                 /* console.log(lugarSel);
                 console.log({ idSelec });  */
                 //Clima y geolocalizacion
@@ -46,7 +53,13 @@ const main = async () => {
                 console.log('Temp Maxima: ',clima.max);
                 
                 break;
-            default:
+            case 2:
+                busquedas.historialCapitalizado.forEach( (lugar, i) =>{
+               /*  busquedas.historial.forEach( (lugar, i) =>{ */
+                    const idx = `${ i + 1 }.`.bgRed;
+                    console.log( `${ idx } ${ lugar.bold.red }.`);
+                });
+
                 break;
         }
         if (opt !== 0) await pause();
