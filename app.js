@@ -32,26 +32,26 @@ const main = async () => {
                 const lugarSel = lugares.find ( l => l.id === idSelec );
                 /* console.log(lugarSel);
                 console.log({ idSelec });  */
-
                 //Clima y geolocalizacion
+                const clima = await busquedas.climaDeLugar(lugarSel.lat, lugarSel.lng);
                 //mostrar resultados
-                console.log(`\n informacion de la ciudad \n`.bgGreen);
-                console.log('Ciudad: ', lugarSel.nombre);
+                console.clear();
+                console.log(`\n\t Informacion de la ciudad \n`.bgGreen);    
+                console.log('Ciudad: ', `${lugarSel.nombre.green}`);
+                console.log('Como esta el clima en la ciudad: ',`${clima.desc.green}`);
                 console.log('Latitud: ',lugarSel.lat);
                 console.log('Longitud: ',lugarSel.lng);
-                console.log('Temperatura: ',);
-                console.log('Temp Minima: ',);
-                console.log('Temp Maxima: ',);
+                console.log('Temperatura: ',clima.temp);
+                console.log('Temp Minima: ',clima.min);
+                console.log('Temp Maxima: ',clima.max);
+                
                 break;
-        
             default:
                 break;
         }
-
         if (opt !== 0) await pause();
 
     } while (opt !== 0);
-
 }
 
 main(); 
